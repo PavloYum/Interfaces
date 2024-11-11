@@ -22,11 +22,27 @@ class BankAccount {
     }
 
     @Override
-    public String toString() {
+    public java.lang.String toString() {
         return "BankAccount{" +
                 "owner=" + owner +
                 ", IBAN='" + IBAN + '\'' +
                 ", balance=" + balance +
                 '}';
     }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BankAccount that = (BankAccount) o;
+        return Double.compare(that.balance, balance) == 0 &&
+                Objects.equals(owner, that.owner) &&
+                Objects.equals(IBAN, that.IBAN);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(owner, IBAN, balance);
 }
+
+
+
